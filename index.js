@@ -1,4 +1,5 @@
 import stylistic from '@stylistic/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 import unocss from '@unocss/eslint-config/flat';
 import importX from 'eslint-plugin-import-x';
 import node from 'eslint-plugin-n';
@@ -12,19 +13,10 @@ import vueA11y from 'eslint-plugin-vuejs-accessibility';
 import { config, configs } from 'typescript-eslint';
 
 export default config(
-  {
-    ignores: ['@OLD/**', 'dist/**', 'node_modules/**'],
-  },
   stylistic.configs['recommended-flat'],
   ...configs.strictTypeChecked,
   ...configs.stylisticTypeChecked,
   {
-    languageOptions: {
-      parserOptions: {
-        project: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
     rules: {
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       '@typescript-eslint/consistent-type-imports': 'error',
@@ -36,6 +28,15 @@ export default config(
   importX.flatConfigs.recommended,
   importX.flatConfigs.typescript,
   importX.flatConfigs['stage-0'],
+  {
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
+    ignores: ['eslint.config.js'],
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+    },
+  },
   node.configs["flat/recommended-script"],
   perfectionist.configs['recommended-natural'],
   promise.configs['flat/recommended'],

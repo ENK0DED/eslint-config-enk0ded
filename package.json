@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-enk0ded",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Shareable ESLint config by ENK0DED",
   "license": "MIT",
   "repository": "enk0ded/eslint-config-enk0ded",
@@ -25,8 +25,10 @@
   ],
   "dependencies": {
     "@stylistic/eslint-plugin": "^3.0.0",
+    "@typescript-eslint/parser": "^8.22.0",
     "@unocss/eslint-config": "^65.4.3",
     "eslint-config-prettier": "^10.0.1",
+    "eslint-import-resolver-typescript": "^3.7.0",
     "eslint-plugin-import-x": "^4.6.1",
     "eslint-plugin-n": "^17.15.1",
     "eslint-plugin-perfectionist": "^4.7.0",
