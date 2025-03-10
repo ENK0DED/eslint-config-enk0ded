@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import stylistic from '@stylistic/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import unocss from '@unocss/eslint-config/flat';
@@ -12,8 +14,11 @@ import vue from 'eslint-plugin-vue';
 import vueA11y from 'eslint-plugin-vuejs-accessibility';
 import { config, configs } from 'typescript-eslint';
 
-export default config(
-  stylistic.configs['recommended-flat'],
+/** @type {(filePaths: string[], directory?: string) => boolean} */
+const hasFile = (filePaths, directory = process.cwd()) => filePaths.some((filePath) => fs.existsSync(path.join(directory, filePath)));
+
+const baseConfigs = [
+  stylistic.configs.all,
   ...configs.strictTypeChecked,
   ...configs.stylisticTypeChecked,
   {
@@ -41,7 +46,7 @@ export default config(
   perfectionist.configs['recommended-natural'],
   promise.configs['flat/recommended'],
   regexp.configs['flat/recommended'],
-  unocss,
+  // UnoCSS wird hier aus der Basiskonfiguration entfernt
   ...vue.configs['flat/recommended'],
   {
     rules: {
@@ -60,7 +65,7 @@ export default config(
       'vuejs-accessibility/anchor-has-content': ['error', { accessibleChildren: ['Icon'] }],
     },
   },
-  unicorn.configs['flat/all'],
+  unicorn.configs.all,
   {
     rules: {
       'unicorn/filename-case': 'off',
@@ -88,4 +93,9 @@ export default config(
       semi: ['error', 'always'],
     },
   },
+];
+
+export default config(
+  ...baseConfigs,
+  ...(hasFile(['uno.config.js', 'uno.config.ts']) ? [unocss] : []),
 );

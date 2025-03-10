@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-enk0ded",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Shareable ESLint config by ENK0DED",
   "license": "MIT",
   "repository": "enk0ded/eslint-config-enk0ded",
@@ -24,35 +24,39 @@
     "eslintconfig"
   ],
   "dependencies": {
-    "@stylistic/eslint-plugin": "^3.0.0",
-    "@typescript-eslint/parser": "^8.22.0",
-    "@unocss/eslint-config": "^65.4.3",
-    "eslint-config-prettier": "^10.0.1",
-    "eslint-import-resolver-typescript": "^3.7.0",
+    "@stylistic/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^8.26.0",
+    "@unocss/eslint-config": "^66.0.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-import-resolver-typescript": "^3.8.3",
     "eslint-plugin-import-x": "^4.6.1",
-    "eslint-plugin-n": "^17.15.1",
-    "eslint-plugin-perfectionist": "^4.7.0",
+    "eslint-plugin-n": "^17.16.2",
+    "eslint-plugin-perfectionist": "^4.10.1",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-regexp": "^2.7.0",
-    "eslint-plugin-unicorn": "^56.0.1",
-    "eslint-plugin-vue": "^9.32.0",
+    "eslint-plugin-unicorn": "^57.0.0",
+    "eslint-plugin-vue": "^10.0.0",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
-    "typescript-eslint": "^8.22.0"
+    "typescript-eslint": "^8.26.0"
   },
   "devDependencies": {
-    "eslint": "^9.19.0",
-    "typescript": "^5.7.3"
+    "eslint": "^9.22.0",
+    "typescript": "^5.8.2"
   },
   "peerDependencies": {
     "eslint": ">=9.0.0",
     "typescript": ">=5.0.0"
   },
-  "overrides": {
-    "eslint": "$eslint",
-    "eslint-plugin-unicorn": "$eslint-plugin-unicorn",
-    "typescript": "$typescript",
-    "typescript-eslint": "$typescript-eslint"
+  "pnpm": {
+    "overrides": {
+      "eslint": "$eslint",
+      "eslint-plugin-unicorn": "$eslint-plugin-unicorn",
+      "eslint-plugin-vue": "$eslint-plugin-vue",
+      "typescript": "$typescript",
+      "typescript-eslint": "$typescript-eslint",
+      "vue-eslint-parser": "^10.0.0"
+    }
   },
-  "packageManager": "pnpm@9.15.4"
+  "packageManager": "pnpm@10.6.2"
 }
