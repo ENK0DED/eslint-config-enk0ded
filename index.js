@@ -1,8 +1,8 @@
-import fs from 'node:fs';
-import path from 'node:path';
+// import fs from 'node:fs';
+// import path from 'node:path';
 import stylistic from '@stylistic/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import unocss from '@unocss/eslint-config/flat';
+// import unocss from '@unocss/eslint-config/flat';
 import importX from 'eslint-plugin-import-x';
 import node from 'eslint-plugin-n';
 import perfectionist from 'eslint-plugin-perfectionist';
@@ -15,7 +15,7 @@ import vueA11y from 'eslint-plugin-vuejs-accessibility';
 import { config, configs } from 'typescript-eslint';
 
 /** @type {(filePaths: string[], directory?: string) => boolean} */
-const hasFile = (filePaths, directory = process.cwd()) => filePaths.some((filePath) => fs.existsSync(path.join(directory, filePath)));
+// const hasFile = (filePaths, directory = process.cwd()) => filePaths.some((filePath) => fs.existsSync(path.join(directory, filePath)));
 
 const baseConfigs = [
   stylistic.configs.all,
@@ -46,7 +46,6 @@ const baseConfigs = [
   perfectionist.configs['recommended-natural'],
   promise.configs['flat/recommended'],
   regexp.configs['flat/recommended'],
-  // UnoCSS wird hier aus der Basiskonfiguration entfernt
   ...vue.configs['flat/recommended'],
   {
     rules: {
@@ -97,5 +96,5 @@ const baseConfigs = [
 
 export default config(
   ...baseConfigs,
-  ...(hasFile(['uno.config.js', 'uno.config.ts']) ? [unocss] : []),
+  // ...(hasFile(['uno.config.js', 'uno.config.ts']) ? [unocss] : []),
 );
