@@ -1,1 +1,5 @@
-export { default } from './index.js';
+import { defineConfig } from 'eslint/config';
+
+import config from './index.js';
+
+export default defineConfig([...config, { languageOptions: { parserOptions: { projectService: true } } }]);

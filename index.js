@@ -1,9 +1,6 @@
-// import fs from 'node:fs';
-// import path from 'node:path';
 import stylistic from '@stylistic/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-// import unocss from '@unocss/eslint-config/flat';
-import importX from 'eslint-plugin-import-x';
+import { importX } from 'eslint-plugin-import-x';
 import node from 'eslint-plugin-n';
 import perfectionist from 'eslint-plugin-perfectionist';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
@@ -12,12 +9,10 @@ import * as regexp from 'eslint-plugin-regexp';
 import unicorn from 'eslint-plugin-unicorn';
 import vue from 'eslint-plugin-vue';
 import vueA11y from 'eslint-plugin-vuejs-accessibility';
-import { config, configs } from 'typescript-eslint';
+import { defineConfig } from 'eslint/config';
+import { configs } from 'typescript-eslint';
 
-/** @type {(filePaths: string[], directory?: string) => boolean} */
-// const hasFile = (filePaths, directory = process.cwd()) => filePaths.some((filePath) => fs.existsSync(path.join(directory, filePath)));
-
-const baseConfigs = [
+export default defineConfig([
   stylistic.configs.all,
   ...configs.strictTypeChecked,
   ...configs.stylisticTypeChecked,
@@ -37,13 +32,14 @@ const baseConfigs = [
     files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
     ignores: ['eslint.config.js'],
     languageOptions: {
-      parser: tsParser,
       ecmaVersion: 'latest',
+      parser: tsParser,
       sourceType: 'module',
     },
   },
-  node.configs["flat/recommended-script"],
+  node.configs['flat/recommended-script'],
   perfectionist.configs['recommended-natural'],
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   promise.configs['flat/recommended'],
   regexp.configs['flat/recommended'],
   ...vue.configs['flat/recommended'],
@@ -92,9 +88,4 @@ const baseConfigs = [
       semi: ['error', 'always'],
     },
   },
-];
-
-export default config(
-  ...baseConfigs,
-  // ...(hasFile(['uno.config.js', 'uno.config.ts']) ? [unocss] : []),
-);
+]);
