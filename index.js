@@ -1,6 +1,7 @@
 import stylistic from '@stylistic/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import { importX } from 'eslint-plugin-import-x';
+import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript';
+import { createNodeResolver, importX } from 'eslint-plugin-import-x';
 import node from 'eslint-plugin-n';
 import perfectionist from 'eslint-plugin-perfectionist';
 import prettierRecommended from 'eslint-plugin-prettier/recommended';
@@ -28,6 +29,11 @@ export default defineConfig([
   importX.flatConfigs.recommended,
   importX.flatConfigs.typescript,
   importX.flatConfigs['stage-0'],
+  {
+    settings: {
+      'import-x/resolver-next': [createTypeScriptImportResolver({ bun: true }), createNodeResolver()],
+    },
+  },
   {
     files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
     ignores: ['eslint.config.js'],
